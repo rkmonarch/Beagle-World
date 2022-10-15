@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 // We use get package for our state management
 
 class QuestionController extends GetxController
-    // ignore: deprecated_member_use
     with
+        // ignore: deprecated_member_use
         SingleGetTickerProviderMixin {
   // Lets animated our progress bar
 

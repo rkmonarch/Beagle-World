@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:Beagle_Community/components/screens/quiz/quiz_screen.dart';
 import 'package:Beagle_Community/providers/question_controller.dart';
 import 'package:Beagle_Community/resources/app_constant.dart';
 import 'package:Beagle_Community/views/home.dart';
@@ -37,7 +36,7 @@ class ScoreScreen extends StatelessWidget {
               const Spacer(),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: score >= 7 ? Colors.green : Colors.red),
+                      backgroundColor: score >= 7 ? Colors.green : Colors.red),
                   onPressed: () {
                     // Get.to(
                     //   score >=7 ?

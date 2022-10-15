@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Beagle_Community/components/connected/connected.dart';
 import 'package:Beagle_Community/components/not_connected/not_connected.dart';
-import 'package:Beagle_Community/components/screens/transaction_status.dart';
 import 'package:Beagle_Community/components/sidebar/sidebar.dart';
 import 'package:Beagle_Community/providers/wallet_state_provider.dart';
 import 'package:Beagle_Community/utils/logger.dart';
@@ -64,18 +63,6 @@ class _HomeState extends State<Home> {
                 provider.updateConnection(false);
               });
               _showSnackBar(context, "Wallet Disconnected", "success");
-              break;
-            case '/signAndSendTransaction':
-              var data = phantomConnectInstance.decryptPayload(
-                  data: params["data"]!, nonce: params["nonce"]!);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TransactionStatus(
-                    signature: data['signature'],
-                  ),
-                ),
-              );
               break;
             default:
               logger.i('unknown');

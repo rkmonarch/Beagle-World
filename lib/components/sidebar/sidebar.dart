@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Beagle_Community/components/screens/about_beagle.dart';
-import 'package:Beagle_Community/components/screens/quiz/quiz_screen.dart';
-import 'package:Beagle_Community/components/screens/score/score_screen.dart';
 import 'package:Beagle_Community/components/screens/screens.dart';
 import 'package:Beagle_Community/providers/screen_provider.dart';
-import 'package:Beagle_Community/resources/app_constant.dart';
 import 'package:get/get.dart';
 import 'package:phantom_connect/phantom_connect.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +20,7 @@ class Sidebar extends StatelessWidget {
 
     return Drawer(
       child: Material(
-        color: kSecondaryColor,
+        // color: kSecondaryColor,
         child: ListView(
           children: <Widget>[
             buildHeader(walletAddress: walletAddrs),
@@ -61,7 +58,7 @@ class Sidebar extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   const Divider(color: Colors.white70),
-                  const SizedBox(height: 294),
+                  const SizedBox(height: 204),
                   const _buildSocialWidgets()
                 ],
               ),
@@ -167,7 +164,7 @@ class _buildSocialWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         IconButton(
           icon: const FaIcon(
