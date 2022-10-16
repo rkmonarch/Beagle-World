@@ -1,25 +1,23 @@
-import 'package:flutter/widgets.dart';
 import 'package:Beagle_Community/components/screens/score/score_screen.dart';
 import 'package:Beagle_Community/models/questions.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 // We use get package for our state management
 
 class QuestionController extends GetxController
-    with
-        // ignore: deprecated_member_use
-        SingleGetTickerProviderMixin {
+    with SingleGetTickerProviderMixin {
   // Lets animated our progress bar
 
-  AnimationController? _animationController;
-  Animation? _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
   // so that we can access our animation outside
-  Animation? get animation => this._animation;
+  Animation get animation => this._animation;
 
-  PageController? _pageController;
-  PageController? get pageController => this._pageController;
+  late PageController _pageController;
+  PageController get pageController => this._pageController;
 
-  final List<Question> _questions = sampledata
+  List<Question> _questions = sampledata
       .map(
         (question) => Question(
             id: question['id'],
@@ -33,8 +31,8 @@ class QuestionController extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  int? _correctAns;
-  int? get correctAns => this._correctAns;
+  late int _correctAns;
+  int get correctAns => this._correctAns;
 
   int? _selectedAns;
   int? get selectedAns => this._selectedAns;
@@ -53,7 +51,7 @@ class QuestionController extends GetxController
     // so our plan is to fill the progress bar within 60s
     _animationController =
         AnimationController(duration: Duration(seconds: 60), vsync: this);
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController!)
+    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
       ..addListener(() {
         // update like setState
         update();
@@ -61,7 +59,7 @@ class QuestionController extends GetxController
 
     // start our animation
     // Once 60s is completed go to the next qn
-    _animationController!.forward().whenComplete(nextQuestion);
+    _animationController.forward().whenComplete(nextQuestion);
     _pageController = PageController();
     super.onInit();
   }
@@ -70,24 +68,24 @@ class QuestionController extends GetxController
   @override
   void onClose() {
     super.onClose();
-    _animationController!.dispose();
-    _pageController!.dispose();
+    _animationController.dispose();
+    _pageController.dispose();
   }
 
   void checkAns(Question question, int selectedIndex) {
     // because once user press any option then it will run
     _isAnswered = true;
-    _correctAns = question.answer;
+    _correctAns = question.answer ?? 4;
     _selectedAns = selectedIndex;
 
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 
     // It will stop the counter
-    _animationController!.stop();
+    _animationController.stop();
     update();
 
     // Once user select an ans after 3s it will go to the next qn
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       nextQuestion();
     });
   }
@@ -95,15 +93,15 @@ class QuestionController extends GetxController
   void nextQuestion() {
     if (_questionNumber.value != _questions.length) {
       _isAnswered = false;
-      _pageController!
-          .nextPage(duration: Duration(milliseconds: 250), curve: Curves.ease);
+      _pageController.nextPage(
+          duration: Duration(milliseconds: 250), curve: Curves.ease);
 
       // Reset the counter
-      _animationController!.reset();
+      _animationController.reset();
 
       // Then start it again
       // Once timer is finish go to the next qn
-      _animationController!.forward().whenComplete(nextQuestion);
+      _animationController.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
       Get.to(ScoreScreen());

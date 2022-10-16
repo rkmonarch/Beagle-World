@@ -28,7 +28,7 @@ class _ConnectedState extends State<Connected> {
   Widget _buildScreen(Screens screen, String walletAddress) {
     switch (screen) {
       case Screens.quiz:
-        return QuizScreen();
+        return QuizScreen(phantomConnectInstance: widget.phantomConnectInstance,);
 
       default:
         return Center(
@@ -48,7 +48,7 @@ class _ConnectedState extends State<Connected> {
                   width: 400,
                   child: ElevatedButton(
                       onPressed: () {
-                        Get.to(QuizScreen());
+                        Get.to(QuizScreen(phantomConnectInstance: widget.phantomConnectInstance));
                       },
                       child: Text("Take a Quiz")),
                 )

@@ -28,7 +28,7 @@ List sampledata = [
   {
     "id": 4,
     "question": "Are beagles picky about their food?",
-    "options": ['Yes', 'No', 'Maybe'],
+    "options": ['Yes', 'No', 'Maybe', 'Nothing'],
     "answer_index": 1,
   },
   {
@@ -44,9 +44,9 @@ List sampledata = [
     "answer_index": 0,
   },
   {
-    "id": 6,
+    "id": 7,
     "question": "Beagles don’t like being left alone.",
-    "options": ['True', 'False'],
+    "options": ['True', 'False', 'Don\'t Know', 'Maybe'],
     "answer_index": 0,
   },
 ];

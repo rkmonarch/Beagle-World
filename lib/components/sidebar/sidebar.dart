@@ -1,3 +1,5 @@
+import 'package:Beagle_Community/components/screens/quiz/quiz_screen.dart';
+import 'package:Beagle_Community/main.dart';
 import 'package:flutter/material.dart';
 import 'package:Beagle_Community/components/screens/about_beagle.dart';
 import 'package:Beagle_Community/components/screens/screens.dart';
@@ -16,14 +18,14 @@ class Sidebar extends StatelessWidget {
   const Sidebar({super.key, required this.phantomConnectInstance});
   @override
   Widget build(BuildContext context) {
-    var walletAddrs = phantomConnectInstance.userPublicKey;
+    storage.write("PKEY", phantomConnectInstance.userPublicKey);
 
     return Drawer(
       child: Material(
         // color: kSecondaryColor,
         child: ListView(
           children: <Widget>[
-            buildHeader(walletAddress: walletAddrs),
+            buildHeader(walletAddress: storage.read("PKEY")),
             const Divider(color: Colors.white70),
             Container(
               padding: padding,
@@ -38,11 +40,9 @@ class Sidebar extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   buildSideBarButton(
-                    text: 'Take Quiz',
-                    icon: Icons.message,
-                    onClicked: () =>
-                        selectedItem(context, 1, phantomConnectInstance),
-                  ),
+                      text: 'Take Quiz',
+                      icon: Icons.message,
+                      onClicked: () => Get.to(QuizScreen(phantomConnectInstance: phantomConnectInstance,))),
                   const SizedBox(height: 16),
                   buildSideBarButton(
                     text: 'About Beagle',
