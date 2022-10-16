@@ -1,19 +1,12 @@
 import 'package:Beagle_Community/Repository/nft_repository.dart';
-import 'package:Beagle_Community/bloc/bloc/nft_bloc.dart';
-import 'package:Beagle_Community/components/screens/quiz/quiz_screen.dart';
 import 'package:Beagle_Community/components/screens/score/nft_page.dart';
 import 'package:Beagle_Community/main.dart';
 import 'package:Beagle_Community/providers/question_controller.dart';
 import 'package:Beagle_Community/resources/app_constant.dart';
-import 'package:Beagle_Community/resources/appwrite.dart';
-import 'package:Beagle_Community/resources/logger.dart';
-import 'package:Beagle_Community/views/home.dart';
-// import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:phantom_connect/phantom_connect.dart';
 
 class ScoreScreen extends StatelessWidget {
   @override
@@ -51,7 +44,7 @@ class ScoreScreen extends StatelessWidget {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: () async {
-                      claimNFT(walletAddress: "3dTSLCGStegkuoU6dc75DbRdJk4rKV3d5ZCZdSWbTcQv").then((value) {
+                      claimNFT(walletAddress: wallet).then((value) {
                         if (value.claimedAddresses != null) {
                           Get.to(NFT(
                               nft_address: value.claimedAddresses.toString()));
